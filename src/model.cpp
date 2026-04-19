@@ -21,10 +21,10 @@ std::pair<float, float> GateRankNet::forward(const VectorXf& state) const {
     // Shared hidden layer
     VectorXf h = relu(Wh * state + bh);    // [GATE_HIDDEN]
 
-    // Gating head → α_t ∈ (0,1)  (Eq. 4)
+    // Gating head → α_t ∈ (0,1)
     float alpha = sigmoid(wg.dot(h) + bg);
 
-    // Complexity head → c_t ∈ (0,1)  (Eq. 6)
+    // Complexity head → c_t ∈ (0,1)
     float c = sigmoid(wc.dot(h) + bc);
 
     return {alpha, c};
@@ -90,7 +90,7 @@ bool OLIVEModel::load_base_weights(const char* path) {
 }
 
 int OLIVEModel::select_rank(float c) const {
-    // Eq. 7: r_t = clip(⌊c·|R|⌋ + r_min, r_min, r_max)
+    // r_t = clip(⌊c·|R|⌋ + r_min, r_min, r_max)
     // Candidate set R = {4, 8, 12, 16}, |R| = 4
     int idx = static_cast<int>(c * static_cast<float>(RANK_CANDIDATES.size()));
     idx = std::clamp(idx, 0, static_cast<int>(RANK_CANDIDATES.size()) - 1);
@@ -100,19 +100,19 @@ int OLIVEModel::select_rank(float c) const {
 VectorXf OLIVEModel::forward(const VectorXf& state) {
     s_ = state;
 
-    // ── Step 1: Dynamic rank selection (Algorithm 1, lines 2-3) ──────
+    // ── Step 1: Dynamic rank selection ───────────────────────────────
     auto [alpha, c] = gate_rank_net_.forward(state);
     alpha_t_ = alpha;
     c_t_     = c;
     r_t_     = select_rank(c);
 
-    // ── Step 2: Compute ΔW_t using leading r_t columns (Eq. 8) ───────
+    // ── Step 2: Compute ΔW_t using leading r_t columns ───────────────
     // ΔW_t = A_t[:, :r_t] × B_t[:, :r_t]^T
     MatrixXf A_r = A_t_.leftCols(r_t_);   // [D × r_t]
     MatrixXf B_r = B_t_.leftCols(r_t_);   // [D × r_t]
     MatrixXf delta_W = A_r * B_r.transpose();  // [D × D]
 
-    // ── Step 3: Gated adaptive middle layer (Eq. 5) ──────────────────
+    // ── Step 3: Gated adaptive middle layer ──────────────────────────
     // W_eff = W2 + α_t · ΔW_t
     MatrixXf W_eff = W2_ + alpha_t_ * delta_W;  // [D × D]
 
@@ -131,7 +131,7 @@ VectorXf OLIVEModel::forward(const VectorXf& state) {
 }
 
 void OLIVEModel::clamp_residual() {
-    // Lyapunov bound: ‖α_t ΔW_t‖_F ≤ ‖A_t‖_F · ‖B_t‖_F  (§3.5)
+    // Lyapunov bound: ‖α_t ΔW_t‖_F ≤ ‖A_t‖_F · ‖B_t‖_F
     A_t_ = clamp_frobenius(A_t_, DELTA_W_MAX);
     B_t_ = clamp_frobenius(B_t_, DELTA_W_MAX);
 }

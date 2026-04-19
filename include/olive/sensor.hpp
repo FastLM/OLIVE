@@ -1,5 +1,5 @@
 #pragma once
-// Sensor layer: four complementary motion modalities (paper §2)
+// Sensor layer: four complementary motion modalities
 //
 //  (i)  Electronic: IMU (accel + gyro @1000 Hz) + bilateral joint encoder
 //  (ii) EMG: 8-ch Delsys Trigno surface EMG, bilateral muscle activation

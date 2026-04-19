@@ -1,5 +1,5 @@
 #pragma once
-// Reward shaping (paper §3.5, Eq. 9)
+// Reward shaping
 //
 //  r_t = w1·ΔEMG_t  +  w2·(1 − E_t)  +  w3·(1 − ‖φ(s_t, a_t)‖₂)
 //
@@ -30,7 +30,7 @@ class RewardShaper {
 public:
     explicit RewardShaper();
 
-    // Compute shaped reward r_t (Eq. 9).
+    // Compute shaped reward r_t.
     // Must call this AFTER action a_t is executed and sensors are updated.
     float compute(const EMGData&       emg_now,
                   const IMUData&       imu_now,
@@ -38,7 +38,7 @@ public:
                   const VectorXf&      state,
                   const VectorXf&      action);
 
-    // Loss components for trainer (Eq. 10, 11, 12)
+    // Loss components for trainer
     struct LossTerms {
         float reward_term;     // -λ1 · r_t
         float smooth_term;     // +λ2 · ‖a_t − a_{t-1}‖²

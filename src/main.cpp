@@ -145,10 +145,10 @@ int main(int argc, char* argv[]) {
         auto loss = reward_shaper.compute_loss(
             r_t, action, action_prev, state, action);
 
-        // ── 8. Online gradient update on A_t, B_t (Algorithm 1, 11-12)
+        // ── 8. Online gradient update on A_t, B_t ────────────────────
         trainer.step(loss, action, action_prev);
 
-        // ── 9. Update EMA history (Algorithm 1, line 13) ──────────────
+        // ── 9. Update EMA history ─────────────────────────────────────
         history     = olive::OnlineTrainer::update_history(history, state);
         action_prev = action;
 

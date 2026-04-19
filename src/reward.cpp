@@ -4,7 +4,7 @@
 
 namespace olive {
 
-// ── Stability metric φ(s_t, a_t) (Eq. after 9) ───────────────────────────
+// ── Stability metric φ(s_t, a_t) ─────────────────────────────────────────
 // φ₁ = CoM deviation estimated from bilateral hip angle asymmetry
 // φ₂ = bilateral torque asymmetry
 float stability_phi(const VectorXf& state, const VectorXf& action) {
@@ -57,7 +57,7 @@ float RewardShaper::compute(const EMGData&    emg_now,
                              const JointData&  joints_now,
                              const VectorXf&   state,
                              const VectorXf&   action) {
-    // ── ΔEMG_t = EMG_{t-1} − EMG_t  (Eq. 9, term 1) ─────────────────
+    // ── ΔEMG_t = EMG_{t-1} − EMG_t ───────────────────────────────────
     float emg_mean = 0.0f;
     for (int i = 0; i < EMG_DIM; ++i) emg_mean += emg_now.ch[i];
     emg_mean /= static_cast<float>(EMG_DIM);
@@ -76,7 +76,7 @@ float RewardShaper::compute(const EMGData&    emg_now,
     prev_emg_mean_ = emg_norm;
     first_step_ = false;
 
-    // ── E_t: metabolic effort proxy  (Eq. 9, term 2) ─────────────────
+    // ── E_t: metabolic effort proxy ───────────────────────────────────
     float E_t = metabolic_effort(imu_now, joints_now);
 
     // Online EMA smoothing of IMU variance
@@ -86,10 +86,10 @@ float RewardShaper::compute(const EMGData&    emg_now,
     imu_var_ema_ = (1.0f - imu_var_alpha_) * imu_var_ema_
                  + imu_var_alpha_ * (acc_n - 9.81f) * (acc_n - 9.81f);
 
-    // ── φ(s_t, a_t): stability  (Eq. 9, term 3) ──────────────────────
+    // ── φ(s_t, a_t): stability ────────────────────────────────────────
     float phi = stability_phi(state, action);
 
-    // ── Shaped reward r_t  (Eq. 9) ────────────────────────────────────
+    // ── Shaped reward r_t ─────────────────────────────────────────────
     float r_t = W_EMG      * delta_emg
               + W_EFFORT   * (1.0f - E_t)
               + W_STABILITY * (1.0f - phi);
@@ -109,11 +109,11 @@ RewardShaper::LossTerms RewardShaper::compute_loss(
     // −λ1 · r_t  (reward maximisation)
     lt.reward_term = -LAMBDA_REWARD * r_t;
 
-    // λ2 · ‖a_t − a_{t-1}‖²  (torque smoothness, Eq. 11)
+    // λ2 · ‖a_t − a_{t-1}‖²  (torque smoothness)
     VectorXf da = action_now - action_prev;
     lt.smooth_term = LAMBDA_SMOOTH * da.squaredNorm();
 
-    // λ3 · ‖φ(s_t, a_t)‖²  (postural stability, Eq. 12)
+    // λ3 · ‖φ(s_t, a_t)‖²  (postural stability)
     float phi = stability_phi(state, action);
     lt.stab_term = LAMBDA_STAB * phi * phi;
 

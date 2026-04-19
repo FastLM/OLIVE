@@ -79,7 +79,7 @@ float OnlineTrainer::step(const RewardShaper::LossTerms& lt,
     MatrixXf grad_A, grad_B;
     compute_lowrank_grads(delta2, model_.last_rank(), grad_A, grad_B);
 
-    // ── Gradient descent update (Eq. 13) ──────────────────────────────
+    // ── Gradient descent update ────────────────────────────────────────
     //   A_{t+1} = A_t − η · ∂L/∂A_t
     //   B_{t+1} = B_t − η · ∂L/∂B_t
     model_.A() -= lr_ * grad_A;

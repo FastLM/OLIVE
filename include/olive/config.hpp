@@ -33,7 +33,7 @@ static constexpr int ACTION_DIM   = 2;
 // ── Policy network widths ────────────────────────────────────────────
 // W0: Linear(STATE_DIM→D) → ReLU → Linear(D→D) → ReLU → Linear(D→ACTION_DIM)
 // Low-rank adaptation applied to the middle D×D layer.
-static constexpr int D = 128;   // d = k = 128 as in the paper
+static constexpr int D = 128;   // d = k = 128
 static constexpr int K = 128;
 
 // ── Low-rank adaptation ──────────────────────────────────────────────
@@ -53,12 +53,12 @@ static constexpr int GATE_HIDDEN = 64;
 static constexpr float LEARNING_RATE  = 1e-3f;
 static constexpr float EMA_ALPHA      = 0.95f;    // history EMA decay
 
-// Reward weights  w1, w2, w3  (Eq. 9)
+// Reward weights  w1, w2, w3
 static constexpr float W_EMG          = 0.4f;
 static constexpr float W_EFFORT       = 0.3f;
 static constexpr float W_STABILITY    = 0.3f;
 
-// Loss weights  λ1, λ2, λ3  (Eq. 10)
+// Loss weights  λ1, λ2, λ3
 static constexpr float LAMBDA_REWARD  = 1.0f;
 static constexpr float LAMBDA_SMOOTH  = 0.05f;
 static constexpr float LAMBDA_STAB   = 0.05f;

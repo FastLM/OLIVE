@@ -1,4 +1,4 @@
-// Evaluation + Ablation Study (paper §4)
+// Evaluation + Ablation Study
 //
 // Reproduces:
 //   Table 2: OLIVE vs. Static / Rule-Based / Fixed-NN

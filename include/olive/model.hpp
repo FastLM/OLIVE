@@ -3,17 +3,17 @@
 //
 // Policy decomposition:
 //   Θ_t  =  W0  +  ΔW_t
-//   ΔW_t =  A_t[:, :r_t]  ×  B_t[:, :r_t]^T       (Eq. 2)
+//   ΔW_t =  A_t[:, :r_t]  ×  B_t[:, :r_t]^T
 //
 // Gated action:
-//   a_t  =  π_{W0 + α_t ΔW_t}(s_t)                  (Eq. 5)
+//   a_t  =  π_{W0 + α_t ΔW_t}(s_t)
 //
 // Where:
 //   W0  — frozen base policy (D×D middle layer), initialised from Vigx-MM
 //   A_t ∈ R^{D × r_max},  B_t ∈ R^{D × r_max}  — online low-rank factors
-//   α_t = σ(g(s_t, h_{t-1}))          — gating scalar     (Eq. 4)
-//   r_t = clip(⌊c_t·|R|⌋ + r_min, r_min, r_max)  — dynamic rank (Eq. 7)
-//   c_t = σ(ψ(s_t, h_{t-1}))          — complexity estimate (Eq. 6)
+//   α_t = σ(g(s_t, h_{t-1}))          — gating scalar
+//   r_t = clip(⌊c_t·|R|⌋ + r_min, r_min, r_max)  — dynamic rank
+//   c_t = σ(ψ(s_t, h_{t-1}))          — complexity estimate
 //
 // Full 3-layer policy network around the adaptive middle layer:
 //   h1  = ReLU(W1 · s_t + b1)                       [STATE_DIM → D]
@@ -91,7 +91,7 @@ public:
     const VectorXf& cached_h2()    const { return h2_; }
     const VectorXf& cached_state() const { return s_; }
 
-    // Clamp ΔW_t Frobenius norm (Lyapunov stability, §3.5)
+    // Clamp ΔW_t Frobenius norm (Lyapunov stability)
     void clamp_residual();
 
 private:

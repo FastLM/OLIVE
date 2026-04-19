@@ -1,5 +1,5 @@
 #pragma once
-// Intent Recognizer (paper §2)
+// Intent Recognizer
 // Lightweight MLP: maps current sensor window → discrete intent u_t
 //   u_t ∈ {walk, climb, slope, uneven}
 // Runs in <2 ms on embedded ARM CPU (single hidden layer, 64 units).
