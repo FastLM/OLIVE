@@ -20,7 +20,7 @@ OLIVE/
 ├── CMakeLists.txt / Makefile
 ├── .gitmodules
 │
-├── include/olive/                 # C++ headers (online runtime)
+├── include/olive/                 
 │   ├── config.hpp                 #   dims, ranks, reward / loss weights
 │   ├── matrix.hpp                 #   Eigen helpers
 │   ├── sensor.hpp                 #   IMU / joint / EMG / vibration → s_t
@@ -29,7 +29,7 @@ OLIVE/
 │   ├── reward.hpp                 #   shaped reward r_t
 │   └── trainer.hpp                #   online PG update on A_t, B_t
 │
-├── src/                           # C++ implementations
+├── src/                           
 │   ├── main.cpp                   #   100 Hz control loop
 │   ├── model.cpp / reward.cpp / trainer.cpp / sensor.cpp / intent.cpp
 │
@@ -42,7 +42,7 @@ OLIVE/
 │   ├── train.py                   #   CLI: python -m distillation.train
 │   └── test_distill.py
 │
-├── teachers/                      # GitHub-clickable submodule folders
+├── teachers/                      
 │   ├── pi0.5/  →  Physical-Intelligence/openpi   (π₀.₅ teacher)
 │   └── pi0.6/  →  Physical-Intelligence/openpi   (π₀.₆ upstream)
 │
