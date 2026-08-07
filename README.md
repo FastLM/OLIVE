@@ -12,6 +12,10 @@ Paper: OLIVE: Online Low-Rank Incremental Learning for Efficient Adaptive Exoske
   <img src="assets/OLIVE_Pipeline.png" width="720" alt="OLIVE pipeline"/>
 </p>
 
+<p align="center">
+  <img src="assets/OLIVE_Full_Design.png" width="720" alt="OLIVE full design"/>
+</p>
+
 ## Repository layout
 
 ```
@@ -76,11 +80,11 @@ cmake -B build && cmake --build build -j
 ```bash
 pip install -r distillation/requirements.txt
 
-# Smoke test (synthetic teacher — no submodule clone needed)
+# Smoke test
 python -m distillation.train --teacher pi0.5 --synthetic --steps 200 \
     --export checkpoints/base_controller_w0.bin
 
-# Real teacher (shallow submodule)
+# get teacher model
 git submodule update --init --depth 1 teachers/pi0.5
 python -m distillation.train --teacher pi0.5 \
     --checkpoint gs://openpi-assets/checkpoints/pi05_base \
@@ -89,8 +93,6 @@ python -m distillation.train --teacher pi0.5 \
 
 See [`distillation/README.md`](distillation/README.md) and
 [`teachers/README.md`](teachers/README.md).
-
-## Method → code
 
 | Component | Code |
 |-----------|------|

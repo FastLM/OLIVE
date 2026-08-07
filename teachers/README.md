@@ -1,8 +1,5 @@
 # Teacher VLAs (git submodule links)
 
-These folders are **git submodules**. On GitHub they appear as special linked
-directories — click the folder to jump to the upstream repository.
-
 | Folder | Upstream | Model |
 |--------|----------|--------|
 | [`pi0.5/`](https://github.com/Physical-Intelligence/openpi) | [Physical-Intelligence/openpi](https://github.com/Physical-Intelligence/openpi) | **π₀.₅** — distillation teacher |
