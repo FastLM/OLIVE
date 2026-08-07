@@ -19,7 +19,7 @@ After training, `W0` is **frozen** and loaded by the C++ runtime
   <em>Figure: OLIVE full system design — π₀.₅ / π₀.₆ distillation into BaseController (W₀), then online gated low-rank adaptation on the exoskeleton.</em>
 </p>
 
-## Quick start (synthetic teacher — no submodule required)
+## Quick start
 
 ```bash
 pip install -r distillation/requirements.txt
@@ -28,9 +28,7 @@ python -m distillation.train --teacher pi0.5 --synthetic --steps 200 \
 ./olive_deploy checkpoints/base_controller_w0.bin
 ```
 
-## Real π0.5 / π0.6 teacher
-
-Teacher code lives as **git submodules** (clickable folders on GitHub):
+## π0.5 / π0.6 as teacher model
 
 | Folder | Opens |
 |--------|--------|
