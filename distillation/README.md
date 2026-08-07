@@ -13,6 +13,12 @@ L_distill = L_KD + λ_feat · L_feat
 After training, `W0` is **frozen** and loaded by the C++ runtime
 (`OLIVEModel::load_base_weights`).
 
+<p align="center">
+  <img src="../assets/OLIVE_Full_Design.png" width="720" alt="OLIVE full design"/>
+  <br/>
+  <em>Figure: OLIVE full system design — π₀.₅ / π₀.₆ distillation into BaseController (W₀), then online gated low-rank adaptation on the exoskeleton.</em>
+</p>
+
 ## Quick start (synthetic teacher — no submodule required)
 
 ```bash

@@ -12,10 +12,6 @@ Paper: OLIVE: Online Low-Rank Incremental Learning for Efficient Adaptive Exoske
   <img src="assets/OLIVE_Pipeline.png" width="720" alt="OLIVE pipeline"/>
 </p>
 
-<p align="center">
-  <img src="assets/OLIVE_Full_Design.png" width="720" alt="OLIVE full design"/>
-</p>
-
 ## Repository layout
 
 ```
