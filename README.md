@@ -6,7 +6,9 @@ open-world VLA **π₀.₅**, then personalised online via a gated low-rank resi
 `ΔW_t = A_t B_tᵀ` with dynamic rank scheduling — all from on-body sensor
 rewards (EMG, IMU, vibration), no reference trajectories.
 
-· Paper: [OLIVE](https://arxiv.org/abs/2606.05234): Online Low-Rank Incremental Learning for Efficient Adaptive Exoskeletons (*UbiComp ’26*) · Code: [FastLM/OLIVE](https://github.com/FastLM/OLIVE)
+· Paper: [OLIVE](https://arxiv.org/abs/2606.05234): Online Low-Rank Incremental Learning for Efficient Adaptive Exoskeletons (*UbiComp ’26*)
+
+· Code: [FastLM/OLIVE](https://github.com/FastLM/OLIVE)
 
 <p align="center">
   <img src="assets/OLIVE_Pipeline.png" width="720" alt="OLIVE pipeline"/>
