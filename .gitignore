@@ -1,0 +1,27 @@
+# Build artefacts
+build/
+cmake-build-*/
+olive_deploy
+olive_eval
+olive_tests
+*.o
+*.a
+
+# Distillation / checkpoints
+checkpoints/
+*.bin
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
+
+# IDE / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Eigen is vendored; ignore its build trees if any
+third_party/eigen/build/

@@ -1,0 +1,10 @@
+# OLIVE runtime (online low-rank adaptation)
+state_dim: 46
+action_dim: 2
+hidden: 128
+r_min: 4
+r_max: 16
+learning_rate: 0.001
+latency_budget_ms: 10.0
+control_freq_hz: 100.0
+base_weights: checkpoints/base_controller_w0.bin

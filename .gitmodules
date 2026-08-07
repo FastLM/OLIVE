@@ -1,0 +1,8 @@
+[submodule "teachers/pi0.5"]
+	path = teachers/pi0.5
+	url = https://github.com/Physical-Intelligence/openpi.git
+	branch = main
+[submodule "teachers/pi0.6"]
+	path = teachers/pi0.6
+	url = https://github.com/Physical-Intelligence/openpi.git
+	branch = main

@@ -19,7 +19,7 @@ using namespace olive;
 static std::atomic<bool> g_running{true};
 static void signal_handler(int) { g_running = false; }
 
-// ── Simulated hardware read (replace with real HAL calls on Ant-H1 Pro) ───
+// ── Simulated hardware read (replace with real HAL calls on the wearable SoC) ──
 // In production these functions call the ARM SoC peripheral drivers:
 //   - IMU  : SPI @ 1000 Hz via DMA ring buffer
 //   - EMG  : USB HID via Delsys Trigno base station

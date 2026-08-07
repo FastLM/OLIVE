@@ -26,10 +26,18 @@ olive_tests: $(SRCS) tests/test_olive.cpp
 test: olive_tests
 	./olive_tests
 
+# Distill π0.5 → BaseController (synthetic teacher; no submodule required)
+distill:
+	python -m distillation.train --teacher pi0.5 --synthetic --steps 200 \
+		--export checkpoints/base_controller_w0.bin
+
+distill-test:
+	python distillation/test_distill.py
+
 eval: olive_eval
 	./olive_eval 5000
 
 clean:
 	rm -f olive_deploy olive_eval olive_tests
 
-.PHONY: all test eval clean
+.PHONY: all test eval clean distill distill-test

@@ -9,7 +9,8 @@
 //   a_t  =  π_{W0 + α_t ΔW_t}(s_t)
 //
 // Where:
-//   W0  — frozen base policy (D×D middle layer), initialised from Vigx-MM
+//   W0  — frozen BaseController, distilled from π0.5 / π0.6
+//         (see distillation/ and teachers/pi0.5, teachers/pi0.6)
 //   A_t ∈ R^{D × r_max},  B_t ∈ R^{D × r_max}  — online low-rank factors
 //   α_t = σ(g(s_t, h_{t-1}))          — gating scalar
 //   r_t = clip(⌊c_t·|R|⌋ + r_min, r_min, r_max)  — dynamic rank

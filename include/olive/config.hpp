@@ -5,8 +5,10 @@
 namespace olive {
 
 // ═══════════════════════════════════════════════════════════════════
-//  Hardware: Vigx Ant-H1 Pro  (ARM-based SoC, <10 ms budget)
-//  Sensor rates: IMU @ 1000 Hz, EMG @ 2000 Hz, vibration @ 1000 Hz
+//  Hardware: bilateral hip-assist exoskeleton (~2.4 kg, ARM SoC)
+//  Sensor rates: IMU @ ~1000 Hz, joint encoders, surface EMG, vibration
+//  Base W0: BaseController distilled from π0.5 (teachers/pi0.5 → openpi)
+//  Latency budget: <10 ms end-to-end
 // ═══════════════════════════════════════════════════════════════════
 
 // ── Sensor dimensions ───────────────────────────────────────────────

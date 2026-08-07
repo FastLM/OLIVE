@@ -1,0 +1,5 @@
+# OLIVE distillation dependencies (π0.5 / π0.6 → BaseController)
+torch>=2.1.0
+numpy>=1.24
+# Optional: initialise teachers/pi0.5 submodule and install openpi extras
+# for real π0.5 rollouts (see teachers/README.md).

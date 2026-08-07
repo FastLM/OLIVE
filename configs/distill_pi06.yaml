@@ -1,0 +1,16 @@
+# Distill π0.6 → BaseController (when openpi ships π0.6 weights)
+teacher: pi0.6
+synthetic: false
+# Update checkpoint once Physical Intelligence publishes π0.6 in openpi:
+#   https://github.com/Physical-Intelligence/openpi
+#   https://website.pi-asset.com/pi06star/PI06_model_card.pdf
+checkpoint: gs://openpi-assets/checkpoints/pi05_base
+steps: 10000
+batch_size: 64
+n_samples: 16384
+lr: 0.001
+beta: 0.1
+lambda_feat: 0.5
+device: cuda
+export: checkpoints/base_controller_w0_pi06.bin
+seed: 0

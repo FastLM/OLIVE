@@ -33,8 +33,9 @@ std::pair<float, float> GateRankNet::forward(const VectorXf& state) const {
 // ── OLIVEModel ────────────────────────────────────────────────────────────
 
 OLIVEModel::OLIVEModel() {
-    // Initialise frozen base policy W0 with Kaiming uniform
-    // (overwritten by load_base_weights() in production)
+    // Initialise frozen base policy W0 with Kaiming uniform.
+    // Production: load BaseController weights distilled from π0.5 / π0.6
+    // via distillation/export_w0.py → load_base_weights().
     W1_ = kaiming_uniform(D, STATE_DIM);
     b1_ = zeros_bias(D);
     W2_ = kaiming_uniform(D, D);
